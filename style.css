@@ -1,69 +1,59 @@
-/* style.css – Extra Credit Styling for Homework 4 */
+/* style.css - Extra Credit Styling */
 
 body {
   font-family: 'Times New Roman', serif;
-  background-color: #fff0f5;
+  background-color: #ffe6f0;
   margin: 0;
-  padding-bottom: 100px;
+  padding-bottom: 80px;
 }
 
 .header {
-  background-color: #ffccd5;
+  background-color: #ffb6c1;
+  padding: 10px;
   text-align: center;
-  padding: 15px;
+  position: relative;
 }
 
 .footer {
+  background-color: #ff4d6d;
+  color: white;
+  text-align: center;
+  padding: 10px;
   position: fixed;
   width: 100%;
   bottom: 0;
-  background-color: #ff6699;
-  color: white;
-  padding: 10px;
-  text-align: center;
-  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.15);
+  left: 0;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }
 
 iframe {
+  margin: 20px auto;
   display: block;
-  margin: 20px auto;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-}
-
-form {
-  background: white;
-  margin: 20px auto;
-  padding: 20px;
-  border-radius: 8px;
-  width: 80%;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
 }
 
 table {
-  width: 100%;
-  border-spacing: 12px;
+  margin: 20px auto;
+  padding: 10px;
+  background-color: white;
+  border: 1px solid #ccc;
 }
 
-input[type="text"],
-input[type="submit"],
-input[type="reset"] {
-  width: 95%;
-  padding: 8px;
-  border: 1px solid #d6336c;
-  border-radius: 4px;
+input[type="text"], input[type="submit"], input[type="reset"] {
+  padding: 5px;
+  margin-top: 5px;
+  width: 200px;
 }
 
-input[type="submit"],
-input[type="reset"] {
-  background-color: #ff6699;
+input[type="submit"], input[type="reset"] {
+  background-color: #ff4d6d;
   color: white;
+  border: none;
   cursor: pointer;
 }
 
-input[type="submit"]:hover,
-input[type="reset"]:hover {
-  background-color: #cc0044;
+input[type="submit"]:hover, input[type="reset"]:hover {
+  background-color: #cc3b57;
 }
 
 #newUserLabel {
@@ -73,5 +63,6 @@ input[type="reset"]:hover {
 
 #welcomeMessage {
   font-weight: bold;
-  color: #660000;
+  color: #333;
 }
+
