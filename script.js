@@ -81,7 +81,7 @@ function handleSubmit(event) {
     deleteCookie("firstName");
     clearLocalStorage();
   }
-  showReview(); // move to review first
+  showReview(); // show modal before final submit
 }
 
 function showReview() {
@@ -107,4 +107,5 @@ function checkCapsLock(e) {
   const capsOn = e.getModifierState && e.getModifierState("CapsLock");
   warning.textContent = capsOn ? "Caps Lock is ON" : "";
 }
+
 
