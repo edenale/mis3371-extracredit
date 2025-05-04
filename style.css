@@ -1,68 +1,76 @@
-/* style.css - Extra Credit Styling */
-
 body {
   font-family: 'Times New Roman', serif;
   background-color: #ffe6f0;
   margin: 0;
-  padding-bottom: 80px;
+  padding-bottom: 100px;
 }
 
 .header {
   background-color: #ffb6c1;
-  padding: 10px;
   text-align: center;
-  position: relative;
+  padding: 15px;
 }
 
-.footer {
-  background-color: #ff4d6d;
-  color: white;
-  text-align: center;
-  padding: 10px;
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-  left: 0;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+.form-section {
+  padding: 20px;
+  background-color: #fff;
+  margin: 20px;
+  border-radius: 8px;
 }
 
-iframe {
-  margin: 20px auto;
+label {
   display: block;
-  border-radius: 6px;
+  margin: 10px 0;
 }
 
-table {
-  margin: 20px auto;
-  padding: 10px;
-  background-color: white;
-  border: 1px solid #ccc;
-}
-
-input[type="text"], input[type="submit"], input[type="reset"] {
-  padding: 5px;
+input[type="text"], input[type="email"], input[type="password"], input[type="tel"] {
+  width: 100%;
+  padding: 8px;
   margin-top: 5px;
-  width: 200px;
 }
 
-input[type="submit"], input[type="reset"] {
-  background-color: #ff4d6d;
+.form-buttons {
+  text-align: center;
+  margin: 20px;
+}
+
+input[type="button"], input[type="submit"], input[type="reset"] {
+  padding: 10px 15px;
+  margin: 5px;
+  background-color: #ff6699;
   color: white;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
 }
 
-input[type="submit"]:hover, input[type="reset"]:hover {
-  background-color: #cc3b57;
+.footer {
+  position: fixed;
+  bottom: 0;
+  background-color: #ff4d6d;
+  color: white;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
 }
 
-#newUserLabel {
-  font-size: 14px;
-  color: #333;
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.5);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-#welcomeMessage {
-  font-weight: bold;
-  color: #333;
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 500px;
 }
 
