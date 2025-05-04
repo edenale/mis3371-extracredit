@@ -2,56 +2,55 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Health is Wealth Medical - Extra Credit</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="https://www.google.com/recaptcha/api.js?render=your_site_key"></script>
-  <script defer src="script.js"></script>
+  <script src="script.js" defer></script>
 </head>
 <body onload="initializePage()">
-  <header class="header">
-    <img src="logo.png" alt="Logo" width="50" height="50" />
+  <div class="header">
     <h1>Health is Wealth Medical</h1>
     <p id="welcomeMessage"></p>
-    <label id="newUserLabel" style="display: none">
-      <input type="checkbox" onclick="resetUser()" /> Not <span id="storedName"></span>? Click here to start as a new user.
+    <label id="newUserLabel" style="display:none;">
+      <input type="checkbox" onclick="resetUser()"> Not <span id="storedName"></span>? Click here to start as a new user.
     </label>
-  </header>
+  </div>
 
-  <iframe src="https://www.cdc.gov" width="100%" height="200px"></iframe>
+  <iframe src="https://www.cdc.gov" width="100%" height="150" frameborder="0"></iframe>
 
   <form id="patientForm" onsubmit="return handleSubmit(event)">
     <div class="form-section">
-      <label>First Name: <input type="text" id="first_name" name="first_name" required /></label>
-      <label>Last Name: <input type="text" id="last_name" name="last_name" required /></label>
-      <label>Email: <input type="email" id="email" name="email" required /></label>
-      <label>Phone: <input type="tel" id="phone" name="phone" required /></label>
-      <label>Symptoms:
-        <textarea id="symptoms" name="symptoms" rows="4" cols="50"></textarea>
+      <label>First Name: <input type="text" id="first_name" name="first_name" required></label>
+      <label>Email: <input type="email" id="email" name="email" required></label>
+      <label>Phone: <input type="tel" id="phone" name="phone" required></label>
+      <label>User ID: <input type="text" id="userid" name="userid" required></label>
+      <label>Password: <input type="password" id="password" name="password" required></label>
+      <label>
+        Remember Me <input type="checkbox" id="rememberMe" checked>
       </label>
-      <label><input type="checkbox" id="rememberMe" checked /> Remember Me</label>
     </div>
 
-    <div class="form-actions">
+    <div class="form-buttons">
       <input type="button" value="Review" onclick="showReview()" />
-      <input type="reset" value="Clear" />
-    </div>
-
-    <div id="modalReview" class="modal">
-      <div class="modal-content">
-        <span class="close" onclick="closeReview()">&times;</span>
-        <h2>Check your entries...</h2>
-        <div id="reviewData"></div>
-        <button onclick="finalSubmit(event)">Submit</button>
-        <button onclick="closeReview()">Go Back</button>
-      </div>
+      <input type="submit" value="Submit" />
+      <input type="reset" value="Clear" onclick="clearLocalStorage()" />
     </div>
   </form>
 
-  <footer class="footer">
-    <p>Health is Wealth Medical | <a href="#" onclick="alert('support@healthiswealthmedical')">Contact Us</a> | 1233 Mission Bend, TX 77083</p>
-  </footer>
+  <div id="reviewSection" class="modal" style="display: none;">
+    <div class="modal-content">
+      <h3>Please Review Your Info</h3>
+      <div id="reviewData"></div>
+      <button onclick="submitFromReview()">Submit</button>
+      <button onclick="closeReview()">Go Back</button>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>Health is Wealth Medical | support@healthiswealthmedical</p>
+  </div>
 </body>
 </html>
+
 
 
