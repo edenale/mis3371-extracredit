@@ -1,0 +1,77 @@
+/* style.css – Extra Credit Styling for Homework 4 */
+
+body {
+  font-family: 'Times New Roman', serif;
+  background-color: #fff0f5;
+  margin: 0;
+  padding-bottom: 100px;
+}
+
+.header {
+  background-color: #ffccd5;
+  text-align: center;
+  padding: 15px;
+}
+
+.footer {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  background-color: #ff6699;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.15);
+}
+
+iframe {
+  display: block;
+  margin: 20px auto;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+form {
+  background: white;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+table {
+  width: 100%;
+  border-spacing: 12px;
+}
+
+input[type="text"],
+input[type="submit"],
+input[type="reset"] {
+  width: 95%;
+  padding: 8px;
+  border: 1px solid #d6336c;
+  border-radius: 4px;
+}
+
+input[type="submit"],
+input[type="reset"] {
+  background-color: #ff6699;
+  color: white;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover,
+input[type="reset"]:hover {
+  background-color: #cc0044;
+}
+
+#newUserLabel {
+  font-size: 14px;
+  color: #333;
+}
+
+#welcomeMessage {
+  font-weight: bold;
+  color: #660000;
+}
