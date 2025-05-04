@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Extra Credit Form</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="extracredit.css" />
+  <script src="https://www.google.com/recaptcha/api.js?render=your_site_key"></script>
+  <script src="extracredit.js" defer></script>
 </head>
 <body onload="initializePage()">
   <div class="header">
@@ -17,14 +17,14 @@
     </label>
   </div>
 
-  <form id="patientForm" action="thankyou.html" method="GET" onsubmit="return handleSubmit(event)">
+  <form id="patientForm" onsubmit="return handleSubmit(event)">
     <div class="input-group">
-      <label for="first_name"><i class="fas fa-user"></i> First Name:</label>
+      <label for="first_name">First Name:</label>
       <input type="text" id="first_name" name="first_name" required />
     </div>
 
     <div class="input-group">
-      <label for="password"><i class="fas fa-lock"></i> Password:</label>
+      <label for="password">Password:</label>
       <input type="password" id="password" name="password" required onkeyup="checkCapsLock(event)" />
       <span id="capsWarning" class="caps-warning"></span>
     </div>
@@ -53,6 +53,7 @@
   <footer>&copy; 2025 Health is Wealth Medical</footer>
 </body>
 </html>
+
 
 
 
