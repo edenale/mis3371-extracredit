@@ -108,4 +108,3 @@ function checkCapsLock(e) {
   warning.textContent = capsOn ? "Caps Lock is ON" : "";
 }
 
-
