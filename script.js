@@ -1,6 +1,4 @@
-// script.js – Extra Credit JS Enhancements for Homework 4
-
-console.log("JS loaded");
+// script.js - Extra Credit JS
 
 function setCookie(name, value, hours) {
   const expires = new Date(Date.now() + hours * 60 * 60 * 1000).toUTCString();
@@ -25,12 +23,8 @@ function saveToLocalStorage() {
   const form = document.getElementById("patientForm");
   const data = {};
   for (const el of form.elements) {
-    if (el.name && el.type !== "submit" && el.type !== "reset") {
-      if (el.type === "checkbox" || el.type === "radio") {
-        data[el.name] = el.checked;
-      } else {
-        data[el.name] = el.value;
-      }
+    if (el.name && (el.type !== "submit" && el.type !== "reset")) {
+      data[el.name] = el.type === "checkbox" || el.type === "radio" ? el.checked : el.value;
     }
   }
   localStorage.setItem("formData", JSON.stringify(data));
@@ -76,11 +70,7 @@ function initializePage() {
     newUserLabel.style.display = "none";
   }
 
-  // Save every time input is updated
-  const form = document.getElementById("patientForm");
-  if (form) {
-    form.addEventListener("input", saveToLocalStorage);
-  }
+  document.getElementById("patientForm").addEventListener("input", saveToLocalStorage);
 }
 
 function resetUser() {
@@ -105,5 +95,6 @@ function handleSubmit(event) {
   }
 
   alert("Form submitted successfully!");
-  window.location.href = "thankyou.html"; // Navigate to the thank you page
+  window.location.href = "thankyou.html";
 }
+
