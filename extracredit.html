@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Health is Wealth Medical - Extra Credit</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="script.js" defer></script>
 </head>
 <body onload="initializePage()">
   <div class="header">
+    <img src="logo.png" alt="Logo" width="50" height="50">
     <h1>Health is Wealth Medical</h1>
     <p id="welcomeMessage"></p>
     <label id="newUserLabel" style="display:none;">
@@ -16,38 +18,44 @@
     </label>
   </div>
 
-  <iframe src="https://www.cdc.gov" width="100%" height="150" frameborder="0"></iframe>
+  <iframe src="https://www.cdc.gov" width="100%" height="200px" style="border: 1px solid #ccc;"></iframe>
 
   <form id="patientForm" onsubmit="return handleSubmit(event)">
     <div class="form-section">
-      <label>First Name: <input type="text" id="first_name" name="first_name" required></label>
-      <label>Email: <input type="email" id="email" name="email" required></label>
-      <label>Phone: <input type="tel" id="phone" name="phone" required></label>
-      <label>User ID: <input type="text" id="userid" name="userid" required></label>
-      <label>Password: <input type="password" id="password" name="password" required></label>
-      <label>
-        Remember Me <input type="checkbox" id="rememberMe" checked>
-      </label>
-    </div>
+      <div class="input-container">
+        <i class="fa fa-user icon"></i>
+        <input class="input-field" type="text" id="first_name" name="first_name" placeholder="First Name" required>
+      </div>
 
-    <div class="form-buttons">
-      <input type="button" value="Review" onclick="showReview()" />
-      <input type="submit" value="Submit" />
-      <input type="reset" value="Clear" onclick="clearLocalStorage()" />
+      <div class="input-container">
+        <i class="fa fa-envelope icon"></i>
+        <input class="input-field" type="email" id="email" name="email" placeholder="Email">
+      </div>
+
+      <div class="input-container">
+        <i class="fa fa-phone icon"></i>
+        <input class="input-field" type="tel" id="phone" name="phone" placeholder="Phone">
+      </div>
+
+      <div class="input-container">
+        <i class="fa fa-user-circle icon"></i>
+        <input class="input-field" type="text" id="userid" name="userid" placeholder="User ID">
+      </div>
+
+      <div class="input-container">
+        <i class="fa fa-lock icon"></i>
+        <input class="input-field" type="password" id="password" name="password" placeholder="Password">
+      </div>
+
+      <label><input type="checkbox" id="rememberMe" checked> Remember Me</label>
+      <br><br>
+      <input type="reset" value="CLEAR AND START OVER">
+      <input type="submit" value="SUBMIT">
     </div>
   </form>
 
-  <div id="reviewSection" class="modal" style="display: none;">
-    <div class="modal-content">
-      <h3>Please Review Your Info</h3>
-      <div id="reviewData"></div>
-      <button onclick="submitFromReview()">Submit</button>
-      <button onclick="closeReview()">Go Back</button>
-    </div>
-  </div>
-
   <div class="footer">
-    <p>Health is Wealth Medical | support@healthiswealthmedical</p>
+    <p>Health is Wealth Medical | <a href="#" onclick="alert('Email: support@healthiswealthmedical')">Contact Us</a> | 1233, Mission Bend, TX 77083</p>
   </div>
 </body>
 </html>
