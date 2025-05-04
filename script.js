@@ -4,11 +4,8 @@ function setCookie(name, value, hours) {
 }
 
 function getCookie(name) {
-  const cookies = document.cookie.split("; ");
-  for (let c of cookies) {
-    if (c.startsWith(name + "=")) return c.split("=")[1];
-  }
-  return "";
+  const match = document.cookie.match(new RegExp(name + "=([^;]+)"));
+  return match ? match[1] : "";
 }
 
 function deleteCookie(name) {
@@ -18,8 +15,8 @@ function deleteCookie(name) {
 function saveToLocalStorage() {
   const form = document.getElementById("patientForm");
   const data = {};
-  for (let el of form.elements) {
-    if (el.name && el.type !== "submit") {
+  for (const el of form.elements) {
+    if (el.name) {
       data[el.name] = el.type === "checkbox" ? el.checked : el.value;
     }
   }
@@ -27,14 +24,16 @@ function saveToLocalStorage() {
 }
 
 function loadFromLocalStorage() {
-  const data = JSON.parse(localStorage.getItem("formData") || "{}");
+  const data = JSON.parse(localStorage.getItem("formData"));
+  if (!data) return;
   const form = document.getElementById("patientForm");
-  for (let key in data) {
-    if (form.elements[key]) {
-      if (form.elements[key].type === "checkbox") {
-        form.elements[key].checked = data[key];
+  for (const key in data) {
+    const el = form.elements[key];
+    if (el) {
+      if (el.type === "checkbox") {
+        el.checked = data[key];
       } else {
-        form.elements[key].value = data[key];
+        el.value = data[key];
       }
     }
   }
@@ -45,81 +44,68 @@ function clearLocalStorage() {
 }
 
 function initializePage() {
-  const name = getCookie("firstName");
+  const storedName = getCookie("firstName");
   const welcome = document.getElementById("welcomeMessage");
+  const nameBox = document.getElementById("first_name");
   const newUserLabel = document.getElementById("newUserLabel");
   const storedNameSpan = document.getElementById("storedName");
 
-  if (name) {
-    welcome.textContent = `Welcome back, ${name}`;
-    document.getElementById("first_name").value = name;
-    storedNameSpan.textContent = name;
+  if (storedName) {
+    welcome.innerText = `Welcome back, ${storedName}`;
+    nameBox.value = storedName;
+    storedNameSpan.innerText = storedName;
     newUserLabel.style.display = "inline";
     loadFromLocalStorage();
   } else {
-    welcome.textContent = "Welcome new user";
-    newUserLabel.style.display = "none";
+    welcome.innerText = "Welcome new user";
   }
 
-  document.getElementById("patientForm").addEventListener("input", () => {
-    saveToLocalStorage();
-    updateProgressBar();
-  });
-  updateProgressBar();
+  document.getElementById("patientForm").addEventListener("input", saveToLocalStorage);
 }
 
 function resetUser() {
   deleteCookie("firstName");
   clearLocalStorage();
   document.getElementById("patientForm").reset();
-  document.getElementById("welcomeMessage").textContent = "Welcome new user";
+  document.getElementById("welcomeMessage").innerText = "Welcome new user";
   document.getElementById("newUserLabel").style.display = "none";
-  updateProgressBar();
 }
 
 function handleSubmit(event) {
   event.preventDefault();
-  const name = document.getElementById("first_name").value.trim();
-  const remember = document.getElementById("rememberMe").checked;
-  if (remember && name) {
+  const name = document.getElementById("first_name").value;
+  if (document.getElementById("rememberMe").checked) {
     setCookie("firstName", name, 48);
     saveToLocalStorage();
   } else {
     deleteCookie("firstName");
     clearLocalStorage();
   }
+  showReview(); // move to review first
+}
+
+function showReview() {
+  const form = document.getElementById("patientForm");
+  const review = document.getElementById("reviewText");
+  review.innerHTML = `
+    <strong>Name:</strong> ${form.first_name.value}<br>
+    <strong>User ID:</strong> ${form.first_name.value.toLowerCase()}<br>
+  `;
+  document.getElementById("reviewSection").style.display = "flex";
+}
+
+function goBack() {
+  document.getElementById("reviewSection").style.display = "none";
+}
+
+function finalSubmit() {
   window.location.href = "thankyou.html";
 }
 
-function detectCapsLock(event) {
+function checkCapsLock(e) {
   const warning = document.getElementById("capsWarning");
-  warning.style.display = event.getModifierState("CapsLock") ? "block" : "none";
+  const capsOn = e.getModifierState && e.getModifierState("CapsLock");
+  warning.textContent = capsOn ? "Caps Lock is ON" : "";
 }
 
-function showReviewModal() {
-  const form = document.getElementById("patientForm");
-  const review = `
-    <strong>Name:</strong> ${form["first_name"].value}<br>
-    <strong>Remember Me:</strong> ${form["rememberMe"].checked ? "Yes" : "No"}
-  `;
-  document.getElementById("reviewData").innerHTML = review;
-  document.getElementById("reviewModal").style.display = "block";
-}
-
-function closeReviewModal() {
-  document.getElementById("reviewModal").style.display = "none";
-}
-
-function confirmSubmit() {
-  closeReviewModal();
-  document.getElementById("patientForm").requestSubmit();
-}
-
-function updateProgressBar() {
-  const form = document.getElementById("patientForm");
-  const fields = [...form.elements].filter(el => el.tagName === "INPUT" && el.type !== "submit" && el.type !== "button");
-  const filled = fields.filter(el => el.type === "checkbox" ? el.checked : el.value.trim() !== "").length;
-  const percent = Math.round((filled / fields.length) * 100);
-  document.getElementById("progressBar").style.width = `${percent}%`;
-}
 
