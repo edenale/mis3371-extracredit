@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Extra Credit Form</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <script src="script.js" defer></script>
 </head>
 <body onload="initializePage()">
-  <div class="banner">
+  <div class="header">
     <h1>Health is Wealth Medical</h1>
     <p id="welcomeMessage"></p>
     <label id="newUserLabel" style="display:none;">
@@ -16,39 +17,43 @@
     </label>
   </div>
 
-  <div id="capsWarning" class="caps-lock-warning">Caps Lock is ON</div>
-
   <form id="patientForm" onsubmit="return handleSubmit(event)">
-    <label>First Name:
+    <div class="input-group">
+      <label for="first_name"><i class="fas fa-user"></i> First Name:</label>
       <input type="text" id="first_name" name="first_name" required />
-    </label>
-    <br/>
-    <label>Password:
-      <input type="password" id="password" name="password" onkeyup="detectCapsLock(event)" required />
-    </label>
-    <br/>
-    <label><input type="checkbox" id="rememberMe" checked /> Remember Me</label>
-    <br/>
-    <input type="button" value="Review" onclick="showReviewModal()" />
-    <input type="submit" value="Submit" />
+    </div>
+
+    <div class="input-group">
+      <label for="password"><i class="fas fa-lock"></i> Password:</label>
+      <input type="password" id="password" name="password" required onkeyup="checkCapsLock(event)" />
+      <span id="capsWarning" class="caps-warning"></span>
+    </div>
+
+    <div class="input-group checkbox">
+      <label><input type="checkbox" id="rememberMe" checked> Remember Me</label>
+    </div>
+
+    <div class="buttons">
+      <button type="button" onclick="showReview()">Review</button>
+      <button type="submit">Submit</button>
+    </div>
   </form>
 
-  <div id="reviewModal" class="modal">
+  <div id="reviewSection" class="modal" style="display:none;">
     <div class="modal-content">
-      <h2>Check Your Information</h2>
-      <p id="reviewData"></p>
-      <button onclick="confirmSubmit()">Submit</button>
-      <button onclick="closeReviewModal()">Go Back</button>
+      <h2>Check your entries...</h2>
+      <p id="reviewText"></p>
+      <button onclick="goBack()">Go Back</button>
+      <button onclick="finalSubmit()">Submit</button>
     </div>
   </div>
 
-  <div class="progress-container">
-    <div class="progress-bar" id="progressBar"></div>
-  </div>
+  <div class="progress-bar"><div id="progressFill"></div></div>
 
-  <div class="footer">© 2025 Health is Wealth Medical</div>
+  <footer>&copy; 2025 Health is Wealth Medical</footer>
 </body>
 </html>
+
 
 
 
