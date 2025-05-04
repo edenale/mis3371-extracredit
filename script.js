@@ -1,5 +1,6 @@
-// script.js - Extra Credit JS
+// script.js – Extra Credit JS Enhancements
 
+// Cookie functions
 function setCookie(name, value, hours) {
   const expires = new Date(Date.now() + hours * 60 * 60 * 1000).toUTCString();
   document.cookie = `${name}=${value}; expires=${expires}; path=/`;
@@ -19,6 +20,7 @@ function deleteCookie(name) {
   document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
 }
 
+// Local Storage
 function saveToLocalStorage() {
   const form = document.getElementById("patientForm");
   const data = {};
@@ -52,16 +54,17 @@ function clearLocalStorage() {
   localStorage.removeItem("formData");
 }
 
+// Welcome Message & Modal
 function initializePage() {
   const storedName = getCookie("firstName");
   const welcome = document.getElementById("welcomeMessage");
-  const firstNameField = document.getElementById("first_name");
+  const nameField = document.getElementById("first_name");
   const newUserLabel = document.getElementById("newUserLabel");
   const storedNameSpan = document.getElementById("storedName");
 
   if (storedName) {
     welcome.innerText = `Welcome back, ${storedName}`;
-    firstNameField.value = storedName;
+    nameField.value = storedName;
     storedNameSpan.innerText = storedName;
     newUserLabel.style.display = "inline";
     loadFromLocalStorage();
@@ -94,7 +97,27 @@ function handleSubmit(event) {
     clearLocalStorage();
   }
 
+  // Simulate recaptcha check (real API integration needed)
   alert("Form submitted successfully!");
   window.location.href = "thankyou.html";
 }
 
+// Modal Review
+function showReviewModal() {
+  const modal = document.getElementById("reviewModal");
+  const form = document.getElementById("patientForm");
+  const output = document.getElementById("reviewContent");
+  output.innerHTML = `<h3>Review Your Information</h3><ul>
+    <li><strong>Name:</strong> ${form.first_name.value}</li>
+    <li><strong>Email:</strong> ${form.email.value}</li>
+    <li><strong>Phone:</strong> ${form.phone.value}</li>
+    <li><strong>City:</strong> ${form.city.value}</li>
+    <li><strong>Zip:</strong> ${form.zip.value}</li>
+    <li><strong>User ID:</strong> ${form.userid.value}</li>
+  </ul>`;
+  modal.style.display = "block";
+}
+
+function closeReviewModal() {
+  document.getElementById("reviewModal").style.display = "none";
+}
